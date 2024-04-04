@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+</head>
+<body>
+    <h1>Recommendations</h1>
+    <form action="{% url 'recommendations' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Recommend</button>
+    </form>
+    {% if form.is_bound and form.errors %}
+        <p>Please correct the following errors:</p>
+        <ul>
+            {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if recommended_dishes %}
+        <ul>
+            {% for dish in recommended_dishes %}
+                <li>
+                    <h2>{{ dish.name }}</h2>
+                    <p>{{ dish.description }}</p>
+                    <p>{{ dish.ID }}</p>
+                    <form action="/recipe/{{ dish.ID }}/" method="get">
+                        <button type="submit">View Details</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} Details</title>
+</head>
+<body>
+    <h1>{{ name }}</h1>
+    <p><strong>Cuisine:</strong> {{ cuisine }}</p>
+    <p><strong>Course:</strong> {{ course }}</p>
+    <p><strong>Diet:</strong> {{ diet }}</p>
+    <p>{{ description }}</p>
+    <h2>Ingredients</h2>
+    <p> {{ ingredients }}</p>
+    <h2>Instructions</h2>
+    <p>{{instructions}}</p>
+    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+</body>
+</html>
